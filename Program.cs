@@ -1,60 +1,41 @@
 ﻿using System;
-using System.Drawing;
 
 public class Line
 {
-    private Point startPoint;
-    private Point endPoint;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
 
-    public Line(Point startPoint, Point endPoint)
-    { this.startPoint = startPoint;
-        this.endPoint = endPoint;
-    }
-    public bool Isequal(Line otherLine)
+
+    public Line(double x1, double y1, double x2, double y2)
     {
-        return startPoint.Equals(otherLine.startPoint) && endPoint.Equals(otherLine.endPoint);
-    }
-}
-public class Point
-{
-    private double x;
-    private double y;
-    public Point(double x, double y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-    public override bool Equals(object obj)
-    {
-        if (obj == null || GetType() != obj.GetType())
-        {
-            return false;
-        }
-        Point otherPoint = (Point)obj;
-        return x == otherPoint.x && y == otherPoint.y;
-    }
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(x,y);
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
 
     }
+    public double CalculateLenght()
+    {
+        double length = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+           return length; 
+          
+           }
 }
 public class program
 {
-    public static void Main(string[] args)
-    {
-        Point point1 = new Point(1, 2);
-        Point point2 = new Point(0, 4);
-        Point point3 = new Point(5, 6);
-        Point point4 = new Point(3, 0);
+ public static void Main(string[] args)
+    { 
+        double x1 = 5.0;
+        double y1 = 4.0;
+        double x2 = 3.0;
+        double y2 = 9.0;
+        Line line = new Line(x1, y1, x2, y2);
 
-        Line line1 = new Line(point1, point2);
-        Line line2 = new Line(point3, point4);
-
-        bool areEqual = line1.Isequal(line2);
-        Console.WriteLine($"are thge lines equal{areEqual}");
-
-
-
-    }
+        double length = line.CalculateLenght();
+        Console.WriteLine("the length of the line is" + length);
+            
+            
+            }
 }
